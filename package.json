@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --progress --colors",
     "watch": "npm run localDev && npm run build -- --watch",
     "localDev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
