@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
 import friends from './friends'
 
-const seenApp = combineReducers({
-  todos,
-  visibilityFilter
-})
-
-export default seenApp
+export default function seenApp(state = {}, action) {
+  return {
+    friends: friends(state.friends, action)
+  }
+}

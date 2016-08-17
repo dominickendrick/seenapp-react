@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "run": "webpack-dev-server",
+    "watch": "npm run localDev && npm run build -- --watch",
+    "localDev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

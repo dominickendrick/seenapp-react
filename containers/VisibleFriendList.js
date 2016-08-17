@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const VisibleTodoList = connect(
+const VisibleFriendList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(FriendList)

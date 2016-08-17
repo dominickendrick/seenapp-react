@@ -23060,6 +23060,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = seenApp;
 
 	var _redux = __webpack_require__(183);
 
@@ -23069,12 +23070,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var seenApp = (0, _redux.combineReducers)({
-	  todos: todos,
-	  visibilityFilter: visibilityFilter
-	});
+	function seenApp() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
 
-	exports.default = seenApp;
+	  return {
+	    friends: (0, _friends2.default)(state.friends, action)
+	  };
+	}
 
 /***/ },
 /* 200 */
@@ -23280,7 +23283,7 @@
 	  };
 	};
 
-	var VisibleTodoList = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_FriendList2.default);
+	var VisibleFriendList = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_FriendList2.default);
 
 	exports.default = VisibleFriendList;
 
@@ -23312,7 +23315,7 @@
 	  return _react2.default.createElement(
 	    'ul',
 	    null,
-	    friends.map(function (todo) {
+	    friends.map(function (friend) {
 	      return _react2.default.createElement(_Friend2.default, _extends({
 	        key: friend.id
 	      }, friend, {

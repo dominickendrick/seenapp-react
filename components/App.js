@@ -6,7 +6,6 @@ const App = () => (
   <div>
     <AddFriend />
     <VisibleFriendList />
-    <Footer />
   </div>
 )
 
