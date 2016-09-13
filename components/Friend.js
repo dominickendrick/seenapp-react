@@ -1,13 +1,8 @@
 import React, { PropTypes } from 'react'
 
 const Friend = ({ onClick, firstName, lastName, lastSeen }) => (
-  <li
-    onClick={onClick}
-    style={{
-      textDecoration: completed ? 'line-through' : 'none'
-    }}
-  >
-    {text}
+  <li onClick={onClick}>
+    {firstName} {lastName} {lastSeen}
   </li>
 )
 

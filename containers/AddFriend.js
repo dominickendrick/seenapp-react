@@ -3,20 +3,25 @@ import { connect } from 'react-redux'
 import { addFriend } from '../actions'
 
 let AddFriend = ({ dispatch }) => {
-  let input
+  let firstName, lastName, lastSeen
 
   return (
     <div>
       <form onSubmit={e => {
         e.preventDefault()
-        if (!input.value.trim()) {
+        if (!firstName.value.trim() || !lastName.value.trim() || !lastSeen.valueAsNumber) {
           return
         }
-        dispatch(addFriend(input.value))
-        input.value = ''
+        dispatch(addFriend(firstName.value, lastName.value, lastSeen.valueAsNumber ))
       }}>
         <input ref={node => {
-          input = node
+          firstName = node
+        }} />
+        <input ref={node => {
+          lastName = node
+        }} />
+        <input type='number' ref={node => {
+          lastSeen = node
         }} />
         <button type="submit">
           Add Friend
@@ -25,6 +30,7 @@ let AddFriend = ({ dispatch }) => {
     </div>
   )
 }
+
 AddFriend = connect()(AddFriend)
 
 export default AddFriend

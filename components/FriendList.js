@@ -3,7 +3,7 @@ import Friend from './Friend'
 
 const FriendList = ({ friends, onFriendClick }) => (
   <ul>
-    {friends.map(friend =>
+    {friends.map( friend =>
       <Friend
         key={friend.id}
         {...friend}
