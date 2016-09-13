@@ -1,22 +1,31 @@
-let nextFriendId = 0
-export const addFriend = (firstName, lastName, lastSeen) => {
+import uuid from 'node-uuid'
+
+export const addFriend = (id, firstName, lastName, lastSeen) => {
   return {
     type: 'ADD_FRIEND',
-    id: nextFriendId++,
+    id,
     firstName,
     lastName,
     lastSeen
   }
 }
 
-export const updateFriend = (lastSeen, id) => {
+export const updateFriend = (id, firstName, lastName, lastSeen) => {
   return {
     type: 'UPDATE_FRIEND',
     id: id,
-    lastSeen: lastSeen
+    firstName,
+    lastName,
+    lastSeen
   }
 }
 
+export const newFriend = () => {
+  return {
+    type: 'NEW_FRIEND',
+    id: uuid.v4()
+  }
+}
 
 export const seenFriend = (id) => {
   return {

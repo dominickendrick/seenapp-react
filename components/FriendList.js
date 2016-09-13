@@ -15,7 +15,7 @@ const FriendList = ({ friends, onFriendClick }) => (
 
 FriendList.propTypes = {
   friends: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     lastSeen: PropTypes.object.isRequired
