@@ -18,7 +18,7 @@ FriendList.propTypes = {
     id: PropTypes.number.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
-    lastSeen: PropTypes.number.isRequired
+    lastSeen: PropTypes.object.isRequired
   }).isRequired).isRequired,
   onFriendClick: PropTypes.func.isRequired
 }

@@ -1,36 +1,65 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { addFriend } from '../actions'
+import { addFriend, updateFriend } from '../actions'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 
-let AddFriend = ({ dispatch }) => {
-  let firstName, lastName, lastSeen
+require('react-datepicker/dist/react-datepicker.css');
 
+const AddFriendComp = ({id, firstName, lastName, lastSeen, onLastSeenChange, onSubmit}) => {
   return (
-    <div>
-      <form onSubmit={e => {
-        e.preventDefault()
-        if (!firstName.value.trim() || !lastName.value.trim() || !lastSeen.valueAsNumber) {
-          return
-        }
-        dispatch(addFriend(firstName.value, lastName.value, lastSeen.valueAsNumber ))
-      }}>
-        <input ref={node => {
-          firstName = node
-        }} />
-        <input ref={node => {
-          lastName = node
-        }} />
-        <input type='number' ref={node => {
-          lastSeen = node
-        }} />
-        <button type="submit">
-          Add Friend
-        </button>
+      <form onSubmit={onSubmit}>
+        <input name='firstName'/>
+        <input name='lastName'/>
+        <DatePicker id='lastSeen'
+          selected={lastSeen}
+          onChange={onLastSeenChange.bind(undefined, id)}
+          locale='en'
+        />
+
+        <button type='submit'>Add Friend</button>
       </form>
-    </div>
   )
 }
 
-AddFriend = connect()(AddFriend)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    id: state.friend.id || 0,
+    firstName: state.friend.firstName || "",
+    lastName: state.friend.lastName || "",
+    lastSeen: state.friend.lastSeen || moment()
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onLastSeenChange: (id, lastSeen) => {
+      console.log(this, id, lastSeen, "this")
+      dispatch(updateFriend(moment(lastSeen), id))
+    },
+    onSubmit: (event) => {
+      const form = event.target.elements
+      event.preventDefault()
+      if (!form.firstName.value.trim() || !form.lastName.value.trim()) {
+        return
+      }
+      dispatch(addFriend(form.firstName.value, form.lastName.value, moment(form.lastSeen.value) ))
+    }
+  }
+}
+
+AddFriendComp.propTypes = {
+  id: PropTypes.number.isRequired,
+  onLastSeenChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  lastSeen: PropTypes.object.isRequired
+}
+
+const AddFriend = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddFriendComp)
 
 export default AddFriend

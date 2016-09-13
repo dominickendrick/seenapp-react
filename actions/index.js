@@ -9,6 +9,14 @@ export const addFriend = (firstName, lastName, lastSeen) => {
   }
 }
 
+export const updateFriend = (lastSeen, id) => {
+  return {
+    type: 'UPDATE_FRIEND',
+    id: id,
+    lastSeen: lastSeen
+  }
+}
+
 
 export const seenFriend = (id) => {
   return {

@@ -1,26 +1,4 @@
-const friend = (state = {}, action) => {
-  switch (action.type) {
-    case 'ADD_FRIEND':
-      return {
-        id: action.id,
-        firstName: action.firstName,
-        lastName: action.lastName,
-        lastSeen: action.lastSeen
-      }
-    case 'SEEN_FRIEND':
-      if (state.id !== action.id) {
-        return state
-      }
-
-      return Object.assign({}, state, {
-        completed: !state.completed
-      })
-
-    default:
-      return state
-  }
-}
-
+import friend from './friend'
 const friends = (state = [], action) => {
   switch (action.type) {
     case 'ADD_FRIEND':
@@ -29,6 +7,10 @@ const friends = (state = [], action) => {
         friend(undefined, action)
       ]
     case 'SEEN_FRIEND':
+      return state.map(t =>
+        friend(t, action)
+      )
+    case 'UPDATE_FRIEND':
       return state.map(t =>
         friend(t, action)
       )

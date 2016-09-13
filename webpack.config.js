@@ -3,14 +3,13 @@ module.exports = {
     './index.js'
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel'
-    }]
+    loaders: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.css$/, loader: "style-loader!css-loader" }
+    ]
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js', '.css']
   },
   output: {
     path: __dirname + '/dist',

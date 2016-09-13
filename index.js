@@ -5,7 +5,17 @@ import { createStore } from 'redux'
 import seenApp from './reducers'
 import App from './components/App'
 
-let store = createStore(seenApp)
+let store = createStore(seenApp,
+    {
+        friend: {
+            id:  0,
+            firstName: "",
+            lastName: "",
+            lastSeen: {}
+        },
+        friends:[]
+    }
+  )
 
 render(
   <Provider store={store}>
